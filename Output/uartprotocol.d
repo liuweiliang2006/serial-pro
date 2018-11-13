@@ -1,0 +1,14 @@
+..\..\output\uartprotocol.o: ..\..\User\protocol\uartprotocol.c
+..\..\output\uartprotocol.o: ..\..\User\protocol\uartprotocol.h
+..\..\output\uartprotocol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\uartprotocol.o: ..\..\User\usart\bsp_usart1.h
+..\..\output\uartprotocol.o: ..\..\Libraries\CMSIS\stm32f10x.h
+..\..\output\uartprotocol.o: ..\..\Libraries\CMSIS\core_cm3.h
+..\..\output\uartprotocol.o: ..\..\Libraries\CMSIS\system_stm32f10x.h
+..\..\output\uartprotocol.o: ..\..\User\stm32f10x_conf.h
+..\..\output\uartprotocol.o: ..\..\Libraries\FWlib\inc\stm32f10x_gpio.h
+..\..\output\uartprotocol.o: ..\..\Libraries\CMSIS\stm32f10x.h
+..\..\output\uartprotocol.o: ..\..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\..\output\uartprotocol.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
+..\..\output\uartprotocol.o: ..\..\Libraries\FWlib\inc\misc.h
+..\..\output\uartprotocol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
