@@ -52,6 +52,12 @@ int main(void)
 	uint16_t usRxCount;
 	uint8_t ucUpKeyVaule;
 	uint16_t i=0;
+	
+//	__disable_irq();
+//	SCB->VTOR = FLASH_BASE | 0x10000;
+//	__enable_irq();
+	
+	
 	for(i=0;i<6144;i++)
 	{
 		test[i]=1;
@@ -63,6 +69,8 @@ int main(void)
 	/* USART1 配置模式为 115200 8-N-1，中断接收 */
 	USARTx_Config();
 	NVIC_Configuration();
+	
+	Usart_SendString( macUSARTx, "protocol program!\n" );
 	
 
 	/* 简单的通信协议，遇到回车换行符认为1个命令帧 */
@@ -87,7 +95,7 @@ int main(void)
 			Master_Send_GetCarState_data();
 		//right
 		if(Key_Scan(macKEY2_GPIO_PORT,macKEY3_GPIO_PIN)==KEY_OFF)
-			Master_Send_Data(test,5);
+			Master_Send_Data(test,6144);
 		
 		
 		if(ucSalvePackLen!=0) //接收到从机发送的数据

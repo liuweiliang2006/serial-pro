@@ -156,6 +156,7 @@ void macUSART_INT_FUN(void)
 		  ucRecCount+=1;	
 		
 	 } 	 
+	USART_ClearITPendingBit(macUSARTx,USART_FLAG_RXNE);
 }
 
 

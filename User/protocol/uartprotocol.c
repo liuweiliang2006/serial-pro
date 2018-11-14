@@ -45,7 +45,8 @@ void Master_Send_Alarm_Data(uint8_t *data)
 		else
 			ucAlarmData[i]=ucPackNum;
 		
-		(uint8_t) (ucCrcCheckSum+=ucAlarmData[i]);
+		if(i>1)		
+		  (uint8_t) (ucCrcCheckSum+=ucAlarmData[i]);
 	}
 	for(;i<Alarm_Protocol_Date_Length-1;i++)
 	{
@@ -97,7 +98,13 @@ void Master_Send_GetCarState_data(void)
 			ucGetCarStateData[i]=ucGetCarStateHeader[i];
 		else
 			ucGetCarStateData[i]=ucPackNum;
-		(uint8_t) (ucCrcCheckSum+=ucGetCarStateData[i]);
+		
+	}
+	
+		for(i=2;i<(sizeof(ucGetCarStateData)/sizeof(uint8_t)-1);i++)
+	{
+
+			(uint8_t) (ucCrcCheckSum+=ucGetCarStateData[i]);
 	}
 	ucGetCarStateData[i]=ucCrcCheckSum;
 
@@ -168,7 +175,8 @@ void Master_Send_Data_Frame(uint8_t *packdata,uint16_t framelen,uint8_t framenum
 			}
 		}
 		
-		(uint8_t) (ucCrcCheckSum+=ucSendData[i]);
+		if(i>1)
+			(uint8_t) (ucCrcCheckSum+=ucSendData[i]);
 	}
 	for(;i<framelen+SendData_ProtocolHeader_Length-1;i++)
 	{
@@ -302,7 +310,8 @@ void Master_Response_Slave(uint8_t datalength, uint8_t cmd)
 		else
 			ucResponse[i]=ucSlaveHeader[i];	
 		
-		(uint8_t) (ucCrcCheckSum+=ucResponse[i]);
+		if(i>1)
+			(uint8_t) (ucCrcCheckSum+=ucResponse[i]);
 		
 	}
 	
@@ -374,7 +383,7 @@ uint8_t UcAnalysis_RecSlave_Data(void)
 {
 	uint16_t i;
 	uint16_t ucSlaveCrcCheckSum=0;
-	for(i=0;i<ucSalvePackLen-1;i++) //except slave data CRC
+	for(i=2;i<ucSalvePackLen-1;i++) //except slave data CRC
 	{		
 		(uint8_t) (ucSlaveCrcCheckSum+=ucReciveBuffer[i]);
 	}
